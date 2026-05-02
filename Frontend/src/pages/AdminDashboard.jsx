@@ -12,7 +12,7 @@ const AdminDashboard = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [newBike, setNewBike] = useState({ name: '', type: 'Mountain', hourlyRate: 0, imageUrl: '' });
 
-  const API_URL = 'http://localhost:5237/api/admin';
+  const API_URL = 'https://bike-rental-ahekfaepfec5fed4.southeastasia-01.azurewebsites.net/api/admin';
   const HEADERS = { headers: { 'X-API-Key': 'admin123' } };
 
   useEffect(() => {

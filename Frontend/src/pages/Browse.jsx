@@ -15,7 +15,7 @@ const Browse = () => {
   const [selectedBike, setSelectedBike] = useState(null);
   const [hours, setHours] = useState(1);
 
-  const API_URL = 'http://localhost:5237/api';
+  const API_URL = 'https://bike-rental-ahekfaepfec5fed4.southeastasia-01.azurewebsites.net/api';
 
   useEffect(() => {
     fetchBikes();

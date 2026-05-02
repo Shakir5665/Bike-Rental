@@ -7,7 +7,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = 'http://localhost:5237/api'; // Updated to match launchSettings.json
+  const API_URL = 'https://bike-rental-ahekfaepfec5fed4.southeastasia-01.azurewebsites.net/api';
 
   useEffect(() => {
     const savedUserId = localStorage.getItem('bikeRentalUserId');
