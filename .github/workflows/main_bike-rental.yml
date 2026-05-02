@@ -59,6 +59,6 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'bike-rental-ahekfaepfec5fed4'
+          app-name: 'Bike-Rental'
           slot-name: 'Production'
           package: .
