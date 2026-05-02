@@ -1,0 +1,27 @@
+services:
+  # Backend API (ASP.NET Core)
+  - type: web
+    name: bike-rental-api
+    env: docker
+    dockerContext: .
+    dockerfilePath: Dockerfile
+    plan: free
+    healthCheckPath: /swagger/index.html
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ConnectionStrings__DefaultConnection
+        # You can manually paste your Neon or Render DB connection string here
+        # or link it if you create a database on Render.
+        sync: false 
+
+  # Frontend (React Vite)
+  - type: static
+    name: bike-rental-frontend
+    env: static
+    buildCommand: npm install && npm run build
+    publishPath: dist
+    baseDir: Frontend
+    envVars:
+      - key: VITE_API_URL
+        value: https://bike-rental-api.onrender.com/api
