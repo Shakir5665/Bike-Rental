@@ -20,13 +20,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
-        builder => builder.WithOrigins(
-                              "https://thankful-grass-08d211200.7.azurestaticapps.net",
-                              "https://bike-rental-3oyrj17ae-mohamed-shakirs-projects-d712c53e.vercel.app"
-                          )
-                          .AllowAnyMethod()
-                          .AllowAnyHeader()
-                          .AllowCredentials());
+        policy => policy.SetIsOriginAllowed(origin => 
+                        {
+                            var uri = new Uri(origin);
+                            return uri.Host.EndsWith("vercel.app") || 
+                                   uri.Host.Contains("azurestaticapps.net");
+                        })
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
 });
 
 var app = builder.Build();
