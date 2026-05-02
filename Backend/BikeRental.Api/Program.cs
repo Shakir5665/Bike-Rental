@@ -33,16 +33,19 @@ if (connectionString != null && (connectionString.StartsWith("postgres://") || c
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// CORS
+// CORS - Professional Standard Configuration
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
         policy => policy.SetIsOriginAllowed(origin => 
                         {
+                            if (string.IsNullOrWhiteSpace(origin)) return false;
                             var uri = new Uri(origin);
                             return uri.Host.EndsWith("vercel.app") || 
                                    uri.Host.EndsWith("onrender.com") ||
-                                   uri.Host == "localhost";
+                                   uri.Host.Contains("shakirs-projects") ||
+                                   uri.Host == "localhost" ||
+                                   uri.Host == "127.0.0.1";
                         })
                         .AllowAnyMethod()
                         .AllowAnyHeader()
