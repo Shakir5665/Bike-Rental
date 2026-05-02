@@ -13,8 +13,25 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Database Context
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+                    ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+
+// Handle Render/Neon URI format (postgresql://user:pass@host/db)
+if (connectionString != null && (connectionString.StartsWith("postgres://") || connectionString.StartsWith("postgresql://")))
+{
+    var uri = new Uri(connectionString);
+    var userInfo = uri.UserInfo.Split(':');
+    var user = userInfo[0];
+    var password = userInfo.Length > 1 ? userInfo[1] : "";
+    var host = uri.Host;
+    var port = uri.Port > 0 ? uri.Port : 5432;
+    var database = uri.AbsolutePath.TrimStart('/');
+    
+    connectionString = $"Host={host};Port={port};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true;";
+}
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
 
 // CORS
 builder.Services.AddCors(options =>
