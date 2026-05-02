@@ -1,0 +1,120 @@
+# .NET / C# specific
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.user
+*.userprefs
+*.suo
+.vs/
+*.csproj.user
+*.rsuser
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# EF Core migrations
+Migrations/
+
+# Environment variables and secrets
+appsettings.*.json
+appsettings.Production.json
+appsettings.Local.json
+.env
+.env.local
+.env.*.local
+
+# Node.js / Frontend specific
+node_modules/
+dist/
+build/
+.next/
+out/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Package manager lock files (optional - uncomment if you want to share)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Frontend build outputs
+Frontend/dist/
+
+# IDE and Editor specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.code-workspace
+
+# Visual Studio Code
+.vscode/
+.vscodeignore
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# Rider
+.rider/
+.ReSharper*/
+*.DotSettings.user
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+
+# Logs
+logs/
+*.log
+Logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.stackdump
+
+# Docker
+.dockerignore
+
+# Testing
+coverage/
+.nyc_output/
