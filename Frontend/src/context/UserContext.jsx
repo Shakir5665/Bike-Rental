@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../api/config';
 
 const UserContext = createContext();
 
@@ -7,7 +8,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = 'https://bike-rental-ahekfaepfec5fed4.southeastasia-01.azurewebsites.net/api';
+
 
   useEffect(() => {
     const savedUserId = localStorage.getItem('bikeRentalUserId');

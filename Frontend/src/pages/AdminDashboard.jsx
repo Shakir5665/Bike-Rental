@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../api/config';
 import { motion } from 'framer-motion';
 import { Plus, Trash2, Edit2, CheckCircle, XCircle, LayoutGrid, List } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -12,7 +13,7 @@ const AdminDashboard = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [newBike, setNewBike] = useState({ name: '', type: 'Mountain', hourlyRate: 0, imageUrl: '' });
 
-  const API_URL = 'https://bike-rental-ahekfaepfec5fed4.southeastasia-01.azurewebsites.net/api/admin';
+  const ADMIN_API_URL = `${API_URL}/admin`;
   const HEADERS = { headers: { 'X-API-Key': 'admin123' } };
 
   useEffect(() => {
@@ -23,8 +24,8 @@ const AdminDashboard = () => {
     setLoading(true);
     try {
       const [bikesRes, rentalsRes] = await Promise.all([
-        axios.get(`${API_URL}/bikes/all`, HEADERS),
-        axios.get(`${API_URL}/rentals/all`, HEADERS)
+        axios.get(`${ADMIN_API_URL}/bikes/all`, HEADERS),
+        axios.get(`${ADMIN_API_URL}/rentals/all`, HEADERS)
       ]);
       setBikes(bikesRes.data);
       setRentals(rentalsRes.data);
@@ -38,7 +39,7 @@ const AdminDashboard = () => {
   const handleAddBike = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${API_URL}/bikes`, newBike, HEADERS);
+      await axios.post(`${ADMIN_API_URL}/bikes`, newBike, HEADERS);
       toast.success('Bike added successfully');
       setIsAdding(false);
       setNewBike({ name: '', type: 'Mountain', hourlyRate: 0, imageUrl: '' });
@@ -51,7 +52,7 @@ const AdminDashboard = () => {
   const handleDeleteBike = async (id) => {
     if (!confirm('Are you sure you want to remove this bike?')) return;
     try {
-      await axios.delete(`${API_URL}/bikes/${id}`, HEADERS);
+      await axios.delete(`${ADMIN_API_URL}/bikes/${id}`, HEADERS);
       toast.success('Bike removed');
       fetchData();
     } catch (error) {

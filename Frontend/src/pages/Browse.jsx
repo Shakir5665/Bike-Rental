@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_URL from '../api/config';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUser } from '../context/UserContext';
 import BikeCard from '../components/BikeCard';
@@ -15,7 +16,7 @@ const Browse = () => {
   const [selectedBike, setSelectedBike] = useState(null);
   const [hours, setHours] = useState(1);
 
-  const API_URL = 'https://bike-rental-ahekfaepfec5fed4.southeastasia-01.azurewebsites.net/api';
+
 
   useEffect(() => {
     fetchBikes();

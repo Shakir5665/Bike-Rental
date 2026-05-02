@@ -35,7 +35,7 @@ bld/
 Migrations/
 
 # Environment variables and secrets
-appsettings.*.json
+appsettings.json
 appsettings.Production.json
 appsettings.Local.json
 .env
